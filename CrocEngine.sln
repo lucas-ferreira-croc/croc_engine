@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31105.61
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Sandbox", "Sandbox\Sandbox.vcxproj", "{998E6598-3761-49FE-89DD-0810478A3E10}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CrocEngine", "CrocEngine\CrocEngine.vcxproj", "{A9E72001-95BC-47BD-841E-A6ADA46096D6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A9E72001-95BC-47BD-841E-A6ADA46096D6}.Debug|x64.ActiveCfg = Debug|x64
+		{A9E72001-95BC-47BD-841E-A6ADA46096D6}.Debug|x64.Build.0 = Debug|x64
+		{A9E72001-95BC-47BD-841E-A6ADA46096D6}.Release|x64.ActiveCfg = Release|x64
+		{A9E72001-95BC-47BD-841E-A6ADA46096D6}.Release|x64.Build.0 = Release|x64
+		{998E6598-3761-49FE-89DD-0810478A3E10}.Debug|x64.ActiveCfg = Debug|x64
+		{998E6598-3761-49FE-89DD-0810478A3E10}.Debug|x64.Build.0 = Debug|x64
+		{998E6598-3761-49FE-89DD-0810478A3E10}.Release|x64.ActiveCfg = Release|x64
+		{998E6598-3761-49FE-89DD-0810478A3E10}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1B955402-1C23-437A-9DD3-E04967D14086}
+	EndGlobalSection
+EndGlobal
