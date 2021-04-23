@@ -27,9 +27,15 @@
     <ClInclude Include="src\Croc\Entrypoint.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Croc\Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Croc\Application.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Croc\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
