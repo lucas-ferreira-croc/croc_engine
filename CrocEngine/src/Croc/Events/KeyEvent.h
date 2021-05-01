@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Croc {
 
 	class CROC_API KeyEvent : public Event 

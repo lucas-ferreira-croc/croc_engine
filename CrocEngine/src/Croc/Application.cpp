@@ -1,9 +1,8 @@
+#include "crocpch.h"
 #include "Application.h"
 
 #include "Croc/Events/ApplicationEvent.h"
 #include "Croc/Log.h"
-#include <iostream>
-
 
 namespace Croc 
 {

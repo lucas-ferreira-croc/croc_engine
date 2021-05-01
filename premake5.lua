@@ -18,6 +18,9 @@ project "CrocEngine"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "crocpch.h"
+	pchsource "CrocEngine/src/crocpch.cpp"
+
 	files 
 	{
 		"%{prj.name}/src/**.h",
