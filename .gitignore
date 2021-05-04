@@ -2,8 +2,10 @@
 .vs/
 bin/
 bin-int/
-git 
+
 
 #Files
-*.vcxproj
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
 *.user
