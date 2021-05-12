@@ -10,6 +10,12 @@ workspace "CrocEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+--Inlude directories relative to root folder (solution directory)
+IncludeDir = {}
+IncludeDir["GLFW"] = "CrocEngine/vendor/GLFW/include"
+
+include "CrocEngine/vendor/GLFW"
+
 project "CrocEngine"
 	location "CrocEngine"
 	kind "SharedLib"
@@ -30,7 +36,14 @@ project "CrocEngine"
 	includedirs 
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

@@ -1,3 +1,6 @@
 [submodule "CrocEngine/vendor/spdlog"]
 	path = CrocEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "CrocEngine/vendor/GLFW"]
+	path = CrocEngine/vendor/GLFW
+	url = https://github.com/lucas-ferreira-croc/glfw

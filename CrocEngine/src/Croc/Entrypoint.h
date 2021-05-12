@@ -8,7 +8,7 @@ int main(int argc, char** argv)
 {
 
 	Croc::Log::Init();
-	CROC_CORE_INFO("Core Log System Inicialized!");
+	CROC_CORE_WARN("Core Log System Inicialized!");
 	CROC_INFO("Client Log System Initialized!");
 
 	auto app = Croc::CreateApplication();
