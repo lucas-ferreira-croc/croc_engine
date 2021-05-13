@@ -3,6 +3,7 @@
 //For use by Croc applications
 
 #include "Croc/Application.h"
+#include "Croc/Layer.h"
 #include "Croc/Log.h"
 // ----- Entry Point -----
 
