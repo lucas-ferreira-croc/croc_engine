@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Croc/Core.h"
-
+#include "crocpch.h"
 #include <string>
 #include <functional>
 
