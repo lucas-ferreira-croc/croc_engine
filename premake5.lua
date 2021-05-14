@@ -13,8 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 --Inlude directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "CrocEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "CrocEngine/vendor/Glad/include"
 
 include "CrocEngine/vendor/GLFW"
+include "CrocEngine/vendor/Glad"
 
 project "CrocEngine"
 	location "CrocEngine"
@@ -37,12 +39,14 @@ project "CrocEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
 	}
 
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib"
 	}
 
@@ -53,7 +57,8 @@ project "CrocEngine"
 
 		defines{
 			"CROC_PLATAFORM_WINDOWS",
-			"CR_BUILD_DLL"
+			"CR_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 		postbuildcommands
