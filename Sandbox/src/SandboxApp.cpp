@@ -26,6 +26,7 @@ public:
 	Sandbox() 
 	{
 		PushLayer(new SampleLayer());
+		PushOverlay(new Croc::ImGuiLayer());
 	}
 
 	~Sandbox() 

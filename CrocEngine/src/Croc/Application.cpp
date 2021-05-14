@@ -8,13 +8,17 @@
 namespace Croc 
 {
 #define BIND_EVENT_FN(x) std::bind(&Application::x, this, std::placeholders::_1)
+	
+	Application* Application::s_Instance = nullptr;
+	
 	Application::Application()
 	{
+		CROC_CORE_ASSERT(!s_Instance, "Application already exists!");
+		s_Instance = this;
+
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(OnEvent));
-
-		unsigned int id;
-		glGenVertexArrays(1, &id);
+		
 	}
 
 	Application::~Application()
@@ -24,11 +28,13 @@ namespace Croc
 	void Application::PushLayer(Layer* layer)
 	{
 		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
 	}
 
-	void Application::PushOverlay(Layer* overlay)
+	void Application::PushOverlay(Layer* layer)
 	{
-		m_LayerStack.PushOverlay(overlay);
+		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
@@ -50,10 +56,11 @@ namespace Croc
 		{
 			glClearColor(77.0f / 255.0f, 28.0f / 255.0f, 184.0f / 255.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
-			m_Window->OnUpdate();
 
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+
+			m_Window->OnUpdate();
 		}
 	}
 
