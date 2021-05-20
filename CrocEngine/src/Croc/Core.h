@@ -10,6 +10,10 @@
 	#error Croc only supports Windows!
 #endif
 
+#ifdef CR_DEBUG
+	#define CROC_ENABLE_ASSERTS
+#endif
+
 #ifdef CROC_ENABLE_ASSERTS
 	#define CROC_ASSERT(x, ...) {if(!(x)) { CROC_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }
 	#define CROC_CORE_ASSERT(x, ...) {if(!(x)) { CROC_CORE_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); } }

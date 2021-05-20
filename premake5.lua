@@ -1,5 +1,6 @@
 workspace "CrocEngine"
 	architecture "x64"
+	startproject "Sandbox"
 	
 	configurations
 	{
@@ -21,10 +22,12 @@ include "CrocEngine/vendor/GLFW"
 include "CrocEngine/vendor/Glad"
 include "CrocEngine/vendor/ImGui"
 
+
 project "CrocEngine"
 	location "CrocEngine"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -57,7 +60,6 @@ project "CrocEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines{
@@ -74,28 +76,28 @@ project "CrocEngine"
 
 	filter "configurations:Debug"
 		defines "CR_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 
 		
 	filter "configurations:Release"
 		defines "CR_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 		
 	filter "configurations:Dist"
 		defines "CR_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
-
 	language "C++"
-	
+	staticruntime "off"
+
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir("bin-int/" .. outputdir .. "/%{prj.name}")
 
@@ -119,7 +121,6 @@ project "Sandbox"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines{
@@ -129,18 +130,18 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "CR_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 
 
 		
 	filter "configurations:Release"
 		defines "CR_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 
 		
 	filter "configurations:Dist"
 		defines "CR_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
