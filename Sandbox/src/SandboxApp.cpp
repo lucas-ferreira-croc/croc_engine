@@ -1,5 +1,7 @@
 #include <Croc.h>
 
+#include <imgui/imgui.h>
+
 class SampleLayer : public Croc::Layer 
 {
 public:
@@ -9,7 +11,7 @@ public:
 		CROC_INFO("Sample Layer Created Succesfully");
 	}
 
-	void OnUpdate() override
+	virtual void OnUpdate() override
 	{
 		//CROC_INFO("SampleLayer::Update");
 		
@@ -17,7 +19,14 @@ public:
 			CROC_TRACE("Space key is pressed (pool)!");
 	}
 
-	void OnEvent(Croc::Event& event) override
+	virtual void OnImGuiRender() override
+ 	{
+		ImGui::Begin("Teste");
+		ImGui::Text("Hello World");
+		ImGui::End();
+	}
+
+	virtual void OnEvent(Croc::Event& event) override
 	{
 		//CROC_TRACE("{0}", event);
 
@@ -38,8 +47,7 @@ class Sandbox : public Croc::Application
 public:
 	Sandbox() 
 	{
-		PushLayer(new SampleLayer());
-		PushOverlay(new Croc::ImGuiLayer());
+		PushLayer(new SampleLayer);
 	}
 
 	~Sandbox() 

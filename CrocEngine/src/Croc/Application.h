@@ -7,6 +7,7 @@
 #include "Events/Event.h"
 #include "Croc/Events/ApplicationEvent.h"
 
+#include "Croc/ImGui/ImGuiLayer.h"
 
 namespace Croc {
 	class CROC_API Application
@@ -28,6 +29,7 @@ namespace Croc {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 	private:

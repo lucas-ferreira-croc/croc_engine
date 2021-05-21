@@ -1,5 +1,3 @@
-#pragma once
-
 #include "crocpch.h"
 #include "WindowsWindow.h"
 

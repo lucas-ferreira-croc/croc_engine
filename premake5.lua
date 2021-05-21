@@ -16,11 +16,12 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "CrocEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "CrocEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "CrocEngine/vendor/imgui"
+IncludeDir["glm"] = "CrocEngine/vendor/glm"
 
 
 include "CrocEngine/vendor/GLFW"
 include "CrocEngine/vendor/Glad"
-include "CrocEngine/vendor/ImGui"
+include "CrocEngine/vendor/imgui"
 
 
 project "CrocEngine"
@@ -38,7 +39,9 @@ project "CrocEngine"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl",
 	}
 
 	includedirs 
@@ -47,7 +50,8 @@ project "CrocEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -65,7 +69,7 @@ project "CrocEngine"
 		defines{
 			"CROC_PLATAFORM_WINDOWS",
 			"CR_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
 		}
 
 		postbuildcommands
@@ -96,6 +100,7 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
 	staticruntime "off"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -109,9 +114,10 @@ project "Sandbox"
 
 	includedirs
 	{
-	
 		"CrocEngine/vendor/spdlog/include",
-		"CrocEngine/src"
+		"CrocEngine/src",
+		"CrocEngine/vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
