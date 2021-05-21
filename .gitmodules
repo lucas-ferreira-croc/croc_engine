@@ -7,3 +7,6 @@
 [submodule "CrocEngine/vendor/imgui"]
 	path = CrocEngine/vendor/imgui
 	url = https://github.com/lucas-ferreira-croc/imgui
+[submodule "CrocEngine/vendor/glm"]
+	path = CrocEngine/vendor/glm
+	url = https://github.com/g-truc/glm
