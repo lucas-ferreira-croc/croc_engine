@@ -46,7 +46,7 @@ namespace Croc {
 		// TODO: glfwTerminate on system shutdown
 
 			int success = glfwInit();
-			CROC_CORE_ASSERT(succes, "Could not be intialized GLFW");
+			CROC_CORE_ASSERT(success, "Could not be intialized GLFW");
 
 			glfwSetErrorCallback(GLFWErrorCallback);
 

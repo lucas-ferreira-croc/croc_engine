@@ -11,7 +11,7 @@ workspace "CrocEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
---Inlude directories relative to root folder (solution directory)
+--Include directories relative to root folder (solution directory)
 IncludeDir = {}
 IncludeDir["GLFW"] = "CrocEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "CrocEngine/vendor/Glad/include"
@@ -70,7 +70,7 @@ project "CrocEngine"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox/\"")
 		}
 	
 
