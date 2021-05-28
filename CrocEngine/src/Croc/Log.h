@@ -22,7 +22,6 @@ namespace Croc
 
 }
 
-
 // Core log macros
 #define CROC_CORE_TRACE(...)     ::Croc::Log::GetCoreLogger()->trace(__VA_ARGS__) 
 #define CROC_CORE_INFO(...)      ::Croc::Log::GetCoreLogger()->info(__VA_ARGS__) 
