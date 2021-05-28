@@ -4,7 +4,7 @@
 
 #include "Window.h"
 #include "Croc/LayerStack.h"
-#include "Events/Event.h"
+#include "Croc/Events/Event.h"
 #include "Croc/Events/ApplicationEvent.h"
 
 #include "Croc/ImGui/ImGuiLayer.h"

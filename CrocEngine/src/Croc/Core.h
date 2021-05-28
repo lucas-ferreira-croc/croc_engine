@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef CROC_PLATAFORM_WINDOWS
+#if CR_DYNAMIC_LINK
 	#ifdef CR_BUILD_DLL
 		#define CROC_API __declspec(dllexport)	
 	#else
 		#define CROC_API __declspec(dllimport)	
 	#endif
+#else
+	#define CROC_API
+#endif
 #else
 	#error Croc only supports Windows!
 #endif

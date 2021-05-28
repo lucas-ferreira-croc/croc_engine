@@ -1,43 +1,39 @@
 #include <Croc.h>
 
-#include <imgui/imgui.h>
+#include "imgui/imgui.h"
 
-class SampleLayer : public Croc::Layer 
+class SampleLayer : public Croc::Layer
 {
 public:
-	SampleLayer()
-		: Layer("Sample") 
+	SampleLayer() :
+		Layer("Sample")
 	{
-		CROC_INFO("Sample Layer Created Succesfully");
+
 	}
 
-	virtual void OnUpdate() override
+	void OnUpdate() override
 	{
-		//CROC_INFO("SampleLayer::Update");
-		
 		if (Croc::Input::isKeyPressed(CROC_KEY_SPACE))
-			CROC_TRACE("Space key is pressed (pool)!");
+			CROC_TRACE("Space Key is Pressed(poll!)");
 	}
 
 	virtual void OnImGuiRender() override
- 	{
-		ImGui::Begin("Teste");
-		ImGui::Text("Hello World");
+	{
+		
+		
+		ImGui::Begin("Test");
+		ImGui::Text("Hello World!");
 		ImGui::End();
 	}
 
-	virtual void OnEvent(Croc::Event& event) override
+	void OnEvent(Croc::Event& event) override
 	{
-		//CROC_TRACE("{0}", event);
-
-		if (event.GetEventType() == Croc::EventType::KeyPressed)
+		if(event.GetEventType() == Croc::EventType::KeyPressed)
 		{
 			Croc::KeyPressedEvent& e = (Croc::KeyPressedEvent&)event;
+			if (e.GetKeyCode() == CROC_KEY_SPACE)
+				CROC_TRACE("Space Key is pressed(event)!");
 			CROC_TRACE("{0}", (char)e.GetKeyCode());
-
-			if (Croc::Input::isKeyPressed(CROC_KEY_SPACE))
-				CROC_TRACE("Space key is pressed (event)!");
-
 		}
 	}
 };
@@ -46,8 +42,8 @@ class Sandbox : public Croc::Application
 {
 public:
 	Sandbox() 
-	{
-		PushLayer(new SampleLayer);
+	{		
+		//PushLayer(new SampleLayer());
 	}
 
 	~Sandbox() 

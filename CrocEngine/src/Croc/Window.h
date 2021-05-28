@@ -1,6 +1,7 @@
 #pragma once
 
 #include "crocpch.h"
+
 #include "Croc/Core.h"
 #include "Croc/Events/Event.h"
 

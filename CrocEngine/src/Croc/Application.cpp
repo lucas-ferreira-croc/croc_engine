@@ -7,7 +7,6 @@
 
 #include "Input.h"
 
-#include "glm/glm.hpp"
 
 namespace Croc 
 {
@@ -52,7 +51,7 @@ namespace Croc
 		{
 			(*--it)->OnEvent(e);
 			if (e.Handled)
-				break;
+					break;
 		}
 	}
 
@@ -64,11 +63,11 @@ namespace Croc
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
-				layer->OnUpdate();
+					layer->OnUpdate();
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
-				m_ImGuiLayer->OnImGuiRender();
+					m_ImGuiLayer->OnImGuiRender();
 			m_ImGuiLayer->End();
 			
 			m_Window->OnUpdate();
