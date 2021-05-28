@@ -63,11 +63,11 @@ namespace Croc
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : m_LayerStack)
-					layer->OnUpdate();
+				layer->OnUpdate();
 
 			m_ImGuiLayer->Begin();
 			for (Layer* layer : m_LayerStack)
-					m_ImGuiLayer->OnImGuiRender();
+				layer->OnImGuiRender();
 			m_ImGuiLayer->End();
 			
 			m_Window->OnUpdate();

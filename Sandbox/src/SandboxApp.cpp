@@ -2,6 +2,7 @@
 
 #include "imgui/imgui.h"
 
+
 class SampleLayer : public Croc::Layer
 {
 public:
@@ -19,9 +20,9 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
+		static bool show = true;
 		
-		
-		ImGui::Begin("Test");
+		ImGui::Begin("Test", &show);
 		ImGui::Text("Hello World!");
 		ImGui::End();
 	}
@@ -43,7 +44,7 @@ class Sandbox : public Croc::Application
 public:
 	Sandbox() 
 	{		
-		//PushLayer(new SampleLayer());
+		PushLayer(new SampleLayer());
 	}
 
 	~Sandbox() 

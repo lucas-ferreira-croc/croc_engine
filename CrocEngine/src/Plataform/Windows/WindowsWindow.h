@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Croc/Window.h"
+#include "Croc/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Croc {
 
@@ -29,6 +31,7 @@ namespace Croc {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData 
 		{
