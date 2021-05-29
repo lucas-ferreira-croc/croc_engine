@@ -9,6 +9,8 @@
 
 #include "Croc/ImGui/ImGuiLayer.h"
 
+#include "Croc/Renderer/Shader.h"
+
 namespace Croc {
 	class CROC_API Application
 	{
@@ -34,6 +36,7 @@ namespace Croc {
 		LayerStack m_LayerStack;
 
 		unsigned int m_VertexArrray, m_VertexBuffer, m_IndexBuffer;
+		std::unique_ptr<Shader> m_Shader;
 	private:
 		static Application* s_Instance;
 	};
