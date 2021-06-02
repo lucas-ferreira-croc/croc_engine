@@ -5,8 +5,7 @@
 
 #include "Plataform/OpenGL/OpenGLBuffer.h"
 
-namespace Croc {
-
+namespace Croc {	
 	VertexBuffer* VertexBuffer::Create(float* vertices, uint32_t size)
 	{
 		switch(Renderer::GetAPI())
