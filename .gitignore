@@ -5,7 +5,7 @@ bin-int/
 
 CrocEngine/vendor/Glad/include
 CrocEngine/vendor/Glad/src
-CrocEngine/src/Plataform/OpenGL/
+
 
 #Files
 **.vcxproj

@@ -11,6 +11,7 @@
 
 #include "Croc/Renderer/Shader.h"
 #include "Croc/Renderer/Buffer.h"
+#include "Croc/Renderer/VertexArray.h"
 
 namespace Croc {
 	class CROC_API Application
@@ -36,11 +37,11 @@ namespace Croc {
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 
-		unsigned int m_VertexArrray;
-		std::unique_ptr<Shader> m_Shader;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
-
+		std::shared_ptr<Shader> m_Shader;	
+		std::shared_ptr<VertexArray> m_VertexArray;
+		
+		std::shared_ptr<Shader> m_PurpleShader;
+		std::shared_ptr<VertexArray> m_SquareVA;;
 	private:
 		static Application* s_Instance;
 	};
