@@ -12,6 +12,7 @@
 #include "Croc/Renderer/Shader.h"
 #include "Croc/Renderer/Buffer.h"
 #include "Croc/Renderer/VertexArray.h"
+#include "Croc/Renderer/OrthographicCamera.h"
 
 namespace Croc {
 	class CROC_API Application
@@ -42,6 +43,8 @@ namespace Croc {
 		
 		std::shared_ptr<Shader> m_PurpleShader;
 		std::shared_ptr<VertexArray> m_SquareVA;;
+
+		OrthographicCamera m_Camera;
 	private:
 		static Application* s_Instance;
 	};
