@@ -9,8 +9,8 @@ namespace Croc {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:   CROC_CORE_ASSERT(false, "RendererAPI::None is currentyly not supported!"); return nullptr;
-		case RendererAPI::OpenGL: return new OpenGLVertexArray();
+			case RendererAPI::API::None:   CROC_CORE_ASSERT(false, "RendererAPI::None is currentyly not supported!"); return nullptr;
+			case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
 		}
 
 		CROC_CORE_ASSERT(false, "Unknown RendererAPI!");
