@@ -8,9 +8,9 @@ namespace Croc {
 	{
 	public:
 		
-		inline static bool isKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
+		inline static bool IsKeyPressed(int keycode) { return s_Instance->IsKeyPressedImpl(keycode); }
 		
-		inline bool isMouseButtonPressed(int button) { return s_Instance->IsMouseButtonPressedImpl(button); }
+		inline bool IsMouseButtonPressed(int button) { return s_Instance->IsMouseButtonPressedImpl(button); }
 		inline static std::pair<float, float> GetMousePosition() { return s_Instance->GetMousePositionImpl(); }
 		inline static float GetMouseX() { return s_Instance->GetMouseXImpl(); }
 		inline static float GetMouseY() { return s_Instance->GetMouseYImpl(); }
