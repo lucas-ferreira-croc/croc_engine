@@ -6,6 +6,8 @@
 #include "Croc/Layer.h"
 #include "Croc/Log.h"
 
+#include "Croc/Core/Timestep.h"
+
 #include "Croc/Input.h"
 #include "Croc/MouseButtonCodes.h"
 #include "Croc/KeyCodes.h"

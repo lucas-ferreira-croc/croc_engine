@@ -127,23 +127,26 @@ public:
 
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Croc::Timestep timestep) override
 	{
-		
+		float time = timestep;
+
+		//CROC_TRACE("Delta time: {0}s, ({1}ms)", timestep.GetSeconds(), timestep.GetMiliSeconds());
+
 		if(Croc::Input::IsKeyPressed(CROC_KEY_LEFT))
-			m_CameraPos.x -= m_CameraMoveSpeed;
+			m_CameraPos.x -= m_CameraMoveSpeed * time;
 		else if (Croc::Input::IsKeyPressed(CROC_KEY_RIGHT))
-			m_CameraPos.x += m_CameraMoveSpeed;
+			m_CameraPos.x += m_CameraMoveSpeed * time;
 			
 		if (Croc::Input::IsKeyPressed(CROC_KEY_DOWN))
-			m_CameraPos.y -= m_CameraMoveSpeed;
+			m_CameraPos.y -= m_CameraMoveSpeed * time;
 		else if (Croc::Input::IsKeyPressed(CROC_KEY_UP))
-			m_CameraPos.y += m_CameraMoveSpeed;
+			m_CameraPos.y += m_CameraMoveSpeed * time;
 	
 		if (Croc::Input::IsKeyPressed(CROC_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed;
+			m_CameraRotation += m_CameraRotationSpeed * time;
 		if (Croc::Input::IsKeyPressed(CROC_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed;
+			m_CameraRotation -= m_CameraRotationSpeed * time;
 
 
 		Croc::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
@@ -183,10 +186,10 @@ private:
 	Croc::OrthographicCamera m_Camera;
 
 	glm::vec3 m_CameraPos;
-	float m_CameraMoveSpeed = 0.1f;
+	float m_CameraMoveSpeed = 5.0f;
 
 	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 50.0f;
+	float m_CameraRotationSpeed = 180.0f;
 
 };
 

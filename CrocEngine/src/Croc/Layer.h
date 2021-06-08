@@ -2,6 +2,7 @@
 
 #include "Croc/Core.h"
 #include "Croc/Events/Event.h"
+#include "Croc/Core/Timestep.h"
 
 namespace Croc {
 
@@ -13,7 +14,7 @@ namespace Croc {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep timestep) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
