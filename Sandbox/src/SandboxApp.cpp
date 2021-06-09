@@ -24,7 +24,7 @@ public:
 			 0.0f,  0.5f, 0.0f, 0.3f, 0.2f, 0.8f, 1.0f
 		};
 
-		std::shared_ptr<Croc::VertexBuffer> vertexBuffer;
+		Croc::Ref<Croc::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(Croc::VertexBuffer::Create(vertices, sizeof(vertices)));
 		Croc::BufferLayout layout = {
 			{ Croc::ShaderDataType::Float3, "a_Position" },
@@ -34,7 +34,7 @@ public:
 		m_VertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0, 1, 2 };
-		std::shared_ptr<Croc::IndexBuffer> indexBuffer;
+		Croc::Ref<Croc::IndexBuffer> indexBuffer;
 		indexBuffer.reset(Croc::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		m_VertexArray->SetIndexBuffer(indexBuffer);
 
@@ -50,7 +50,7 @@ public:
 		};
 
 
-		std::shared_ptr<Croc::VertexBuffer> squareVB;
+		Croc::Ref<Croc::VertexBuffer> squareVB;
 		squareVB.reset(Croc::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
 
 		Croc::BufferLayout squareLayout = {
@@ -60,7 +60,7 @@ public:
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-		std::shared_ptr<Croc::IndexBuffer> squareIB;
+		Croc::Ref<Croc::IndexBuffer> squareIB;
 		squareIB.reset(Croc::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		m_SquareVA->SetIndexBuffer(squareIB);
 
@@ -209,11 +209,11 @@ public:
 	}
 
 private:
-	std::shared_ptr<Croc::Shader> m_Shader;
-	std::shared_ptr<Croc::VertexArray> m_VertexArray;
+	Croc::Ref<Croc::Shader> m_Shader;
+	Croc::Ref<Croc::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Croc::Shader> m_FlatColorShader;
-	std::shared_ptr<Croc::VertexArray> m_SquareVA;;
+	Croc::Ref<Croc::Shader> m_FlatColorShader;
+	Croc::Ref<Croc::VertexArray> m_SquareVA;;
 
 	Croc::OrthographicCamera m_Camera;
 
