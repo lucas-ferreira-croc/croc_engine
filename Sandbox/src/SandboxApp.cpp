@@ -1,8 +1,11 @@
 #include <Croc.h>
 
+#include "Plataform/OpenGL/OpenGLShader.h"
+
 #include "imgui/imgui.h"
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 
 class SampleLayer : public Croc::Layer
@@ -88,6 +91,7 @@ public:
 			layout(location = 0) out vec4 color;
 			
 			in vec3 v_Position;
+			
 			in vec4 v_Color;
 			
 			void main()
@@ -96,9 +100,9 @@ public:
 			}
 		)";
 
-		m_Shader.reset(new Croc::Shader(vertexSource, fragmentSource));
+		m_Shader.reset(Croc::Shader::Create(vertexSource, fragmentSource));
 
-		std::string purpleVertexSource = R"(
+		std::string flatColorVertexSource = R"(
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_Position;
@@ -116,18 +120,22 @@ public:
 			}
 		)";
 
-		std::string purpleFragmentSource = R"(
+		std::string flatColorFragmentSource = R"(
 			#version 330 core
 			
 			layout(location = 0) out vec4 color;
+
 			in vec3 v_Position;
+			
+			uniform vec3 u_Color;
+
 			void main()
 			{
-				color = vec4(0.8, 0.3, 0.8, 1.0);
+				color = vec4(u_Color, 1.0f);
 			}
 		)";
 
-		m_PurpleShader.reset(new Croc::Shader(purpleVertexSource, purpleFragmentSource));
+		m_FlatColorShader.reset(Croc::Shader::Create(flatColorVertexSource, flatColorFragmentSource));
 
 	}
 
@@ -153,8 +161,6 @@ public:
 			m_CameraRotation -= m_CameraRotationSpeed * time;
 
 
-
-
 		Croc::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Croc::RenderCommand::Clear();
 
@@ -165,13 +171,16 @@ public:
 		
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->Bind();
+		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
+
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++) 
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Croc::Renderer::Submit(m_PurpleShader, m_SquareVA, transform);
+				Croc::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}			
 		}
 
@@ -182,11 +191,16 @@ public:
 
 	virtual void OnImGuiRender() override
 	{
+		ImGui::Begin("Settings");
 		
+		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
+
+		ImGui::End();
 	}
 
 	void OnEvent(Croc::Event& event) override
 	{
+
 	}
 
 	bool OnKeyPressedEvent(Croc::KeyPressedEvent& event)
@@ -198,7 +212,7 @@ private:
 	std::shared_ptr<Croc::Shader> m_Shader;
 	std::shared_ptr<Croc::VertexArray> m_VertexArray;
 
-	std::shared_ptr<Croc::Shader> m_PurpleShader;
+	std::shared_ptr<Croc::Shader> m_FlatColorShader;
 	std::shared_ptr<Croc::VertexArray> m_SquareVA;;
 
 	Croc::OrthographicCamera m_Camera;
@@ -209,6 +223,7 @@ private:
 	float m_CameraRotation = 0.0f;
 	float m_CameraRotationSpeed = 180.0f;
 
+	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
 
 class Sandbox : public Croc::Application
