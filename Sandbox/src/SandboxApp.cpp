@@ -215,7 +215,6 @@ public:
 		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
 
-
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++) 
@@ -228,7 +227,6 @@ public:
 		
 		m_Texture->Bind();
 		Croc::Renderer::Submit(m_TextureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
 
 		// Triangle
 		// Croc::Renderer::Submit(m_Shader, m_VertexArray);
