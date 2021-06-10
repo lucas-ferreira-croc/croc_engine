@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "CrocEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "CrocEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "CrocEngine/vendor/imgui"
 IncludeDir["glm"] = "CrocEngine/vendor/glm"
+IncludeDir["stb_image"] = "CrocEngine/vendor/stb_image"
 
 
 include "CrocEngine/vendor/GLFW"
@@ -41,8 +42,10 @@ project "CrocEngine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	defines
@@ -57,6 +60,7 @@ project "CrocEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.glm}"
 	}
 

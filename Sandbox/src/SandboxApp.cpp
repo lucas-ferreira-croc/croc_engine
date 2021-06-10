@@ -42,21 +42,21 @@ public:
 
 		m_SquareVA.reset(Croc::VertexArray::Create());
 
-		float squareVertices[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float squareVertices[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 
 		Croc::Ref<Croc::VertexBuffer> squareVB;
 		squareVB.reset(Croc::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
+		squareVB->SetLayout({
+			{ Croc::ShaderDataType::Float3, "a_Position" },
+			{ Croc::ShaderDataType::Float2, "a_TexCoord" }
+		});
 
-		Croc::BufferLayout squareLayout = {
-			{ Croc::ShaderDataType::Float3, "a_Position" }
-		};
-		squareVB->SetLayout(squareLayout);
 		m_SquareVA->AddVertexBuffer(squareVB);
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
@@ -137,6 +137,46 @@ public:
 
 		m_FlatColorShader.reset(Croc::Shader::Create(flatColorVertexSource, flatColorFragmentSource));
 
+		std::string textureShaderVertexSource = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 a_Position;
+			layout(location = 1) in vec2 a_TexCoord;
+
+			uniform mat4 u_ViewProjection;
+			uniform mat4 u_Transform;
+
+			out vec2 v_TexCoord;
+			
+			void main()
+			{
+				v_TexCoord = a_TexCoord;
+				gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);	
+
+			}
+		)";
+
+		std::string textureShaderFragmentSource = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec2 v_TexCoord;
+			
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				color = texture(u_Texture, v_TexCoord);
+			}
+		)";
+
+		m_TextureShader.reset(Croc::Shader::Create(textureShaderVertexSource, textureShaderFragmentSource));
+
+		m_Texture = Croc::Texture2D::Create("assets/textures/croc_engine_logo.png");
+
+		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_TextureShader)->Bind();
+		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Croc::Timestep timestep) override
@@ -174,6 +214,8 @@ public:
 		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->Bind();
 		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat3("u_Color", m_SquareColor);
 
+
+
 		for (int y = 0; y < 20; y++)
 		{
 			for (int x = 0; x < 20; x++) 
@@ -183,8 +225,13 @@ public:
 				Croc::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}			
 		}
+		
+		m_Texture->Bind();
+		Croc::Renderer::Submit(m_TextureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-		Croc::Renderer::Submit(m_Shader, m_VertexArray);
+
+		// Triangle
+		// Croc::Renderer::Submit(m_Shader, m_VertexArray);
 		
 		Croc::Renderer::EndScene();
 	}
@@ -212,8 +259,10 @@ private:
 	Croc::Ref<Croc::Shader> m_Shader;
 	Croc::Ref<Croc::VertexArray> m_VertexArray;
 
-	Croc::Ref<Croc::Shader> m_FlatColorShader;
+	Croc::Ref<Croc::Shader> m_FlatColorShader, m_TextureShader;
 	Croc::Ref<Croc::VertexArray> m_SquareVA;;
+
+	Croc::Ref<Croc::Texture2D> m_Texture;
 
 	Croc::OrthographicCamera m_Camera;
 

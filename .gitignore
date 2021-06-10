@@ -5,6 +5,7 @@ bin-int/
 
 CrocEngine/vendor/Glad/include
 CrocEngine/vendor/Glad/src
+CrocEngine/vendor/stb_image
 
 
 #Files

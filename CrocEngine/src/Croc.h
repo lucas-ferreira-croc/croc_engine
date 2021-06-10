@@ -20,6 +20,7 @@
 
 #include "Croc/Renderer/Buffer.h"
 #include "Croc/Renderer/Shader.h"
+#include "Croc/Renderer/Texture.h"
 #include "Croc/Renderer/VertexArray.h"
 
 #include "Croc/Renderer/OrthographicCamera.h"
