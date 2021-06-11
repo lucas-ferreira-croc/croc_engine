@@ -7,7 +7,6 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-
 class SampleLayer : public Croc::Layer
 {
 public:
@@ -100,7 +99,7 @@ public:
 			}
 		)";
 
-		m_Shader.reset(Croc::Shader::Create(vertexSource, fragmentSource));
+		m_Shader = Croc::Shader::Create("VertexPosColor", vertexSource, fragmentSource);
 
 
 		std::string flatColorVertexSource = R"(
@@ -137,14 +136,14 @@ public:
 			}
 		)";
 
-		m_FlatColorShader.reset(Croc::Shader::Create(flatColorVertexSource, flatColorFragmentSource));
+		m_FlatColorShader = Croc::Shader::Create("FlatColor", flatColorVertexSource, flatColorFragmentSource);
 
-		m_TextureShader.reset(Croc::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		m_Texture = Croc::Texture2D::Create("assets/textures/croc_engine_logo.png");
 
-		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_TextureShader)->Bind();
-		std::dynamic_pointer_cast<Croc::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+		std::dynamic_pointer_cast<Croc::OpenGLShader>(textureShader)->Bind();
+		std::dynamic_pointer_cast<Croc::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
 	}
 
 	void OnUpdate(Croc::Timestep timestep) override
@@ -193,8 +192,10 @@ public:
 			}			
 		}
 		
+		auto textureShader = m_ShaderLibrary.Get("Texture");
+
 		m_Texture->Bind();
-		Croc::Renderer::Submit(m_TextureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+		Croc::Renderer::Submit(textureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
 		// Croc::Renderer::Submit(m_Shader, m_VertexArray);
@@ -222,10 +223,13 @@ public:
 	}
 
 private:
+
+	Croc::ShaderLibrary m_ShaderLibrary;
+
 	Croc::Ref<Croc::Shader> m_Shader;
 	Croc::Ref<Croc::VertexArray> m_VertexArray;
 
-	Croc::Ref<Croc::Shader> m_FlatColorShader, m_TextureShader;
+	Croc::Ref<Croc::Shader> m_FlatColorShader;
 	Croc::Ref<Croc::VertexArray> m_SquareVA;;
 
 	Croc::Ref<Croc::Texture2D> m_Texture;
