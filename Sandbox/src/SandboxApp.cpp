@@ -11,7 +11,7 @@ class SampleLayer : public Croc::Layer
 {
 public:
 	SampleLayer() :
-		Layer("Sample"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPos(0.0f)
+		Layer("Sample"), m_CameraController(1280.0f /720.0f)
 	{
 		// Triangle Vertex Array Stuff
 
@@ -148,33 +148,15 @@ public:
 
 	void OnUpdate(Croc::Timestep timestep) override
 	{
-		float time = timestep;
-
-		//CROC_TRACE("Delta time: {0}s, ({1}ms)", timestep.GetSeconds(), timestep.GetMiliSeconds());
-
-		if(Croc::Input::IsKeyPressed(CROC_KEY_LEFT))
-			m_CameraPos.x -= m_CameraMoveSpeed * time;
-		else if (Croc::Input::IsKeyPressed(CROC_KEY_RIGHT))
-			m_CameraPos.x += m_CameraMoveSpeed * time;
-			
-		if (Croc::Input::IsKeyPressed(CROC_KEY_DOWN))
-			m_CameraPos.y -= m_CameraMoveSpeed * time;
-		else if (Croc::Input::IsKeyPressed(CROC_KEY_UP))
-			m_CameraPos.y += m_CameraMoveSpeed * time;
 	
-		if (Croc::Input::IsKeyPressed(CROC_KEY_A))
-			m_CameraRotation += m_CameraRotationSpeed * time;
-		if (Croc::Input::IsKeyPressed(CROC_KEY_D))
-			m_CameraRotation -= m_CameraRotationSpeed * time;
+		// Update
+		m_CameraController.OnUpdate(timestep);
 
-
+		// Renderer
 		Croc::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Croc::RenderCommand::Clear();
 
-		m_Camera.SetPosition(m_CameraPos);
-		m_Camera.SetRotation(m_CameraRotation);
-
-		Croc::Renderer::BeginScene(m_Camera);
+		Croc::Renderer::BeginScene(m_CameraController.GetCamera());
 		
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -195,10 +177,10 @@ public:
 		auto textureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
+		Croc::Renderer::Submit(m_Shader, m_VertexArray);
 		Croc::Renderer::Submit(textureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
-		// Croc::Renderer::Submit(m_Shader, m_VertexArray);
 		
 		Croc::Renderer::EndScene();
 	}
@@ -212,9 +194,9 @@ public:
 		ImGui::End();
 	}
 
-	void OnEvent(Croc::Event& event) override
+	void OnEvent(Croc::Event& e) override
 	{
-
+		m_CameraController.OnEvent(e);
 	}
 
 	bool OnKeyPressedEvent(Croc::KeyPressedEvent& event)
@@ -234,13 +216,7 @@ private:
 
 	Croc::Ref<Croc::Texture2D> m_Texture;
 
-	Croc::OrthographicCamera m_Camera;
-
-	glm::vec3 m_CameraPos;
-	float m_CameraMoveSpeed = 5.0f;
-
-	float m_CameraRotation = 0.0f;
-	float m_CameraRotationSpeed = 180.0f;
+	Croc::OrthographicCameraController m_CameraController;
 
 	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };

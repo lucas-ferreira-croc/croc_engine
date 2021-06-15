@@ -11,6 +11,7 @@
 #include "Croc/Input.h"
 #include "Croc/MouseButtonCodes.h"
 #include "Croc/KeyCodes.h"
+#include "Croc/OrthographicCameraController.h"
 
 #include "Croc/ImGui/ImGuiLayer.h"
 
