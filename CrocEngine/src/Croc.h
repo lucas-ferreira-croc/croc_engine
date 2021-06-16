@@ -26,8 +26,3 @@
 
 #include "Croc/Renderer/OrthographicCamera.h"
 // -----------------------
-
-
-// ----- Entry Point -----
-#include "Croc/Core/Entrypoint.h"
-// -----------------------

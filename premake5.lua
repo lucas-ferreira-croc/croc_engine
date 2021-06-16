@@ -76,7 +76,6 @@ project "CrocEngine"
 		systemversion "latest"
 
 		defines{
-			"CROC_PLATAFORM_WINDOWS",
 			"CR_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
 		}
@@ -129,11 +128,6 @@ project "Sandbox"
 	filter "system:windows"
 		cppdialect "C++17"
 		systemversion "latest"
-
-		defines{
-			"CROC_PLATAFORM_WINDOWS",
-		}
-	
 
 	filter "configurations:Debug"
 		defines "CR_DEBUG"

@@ -1,4 +1,5 @@
 #include <Croc.h>
+#include <Croc/Core/Entrypoint.h>
 
 #include "Plataform/OpenGL/OpenGLShader.h"
 
@@ -6,6 +7,8 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
+
+#include "Sandbox2D.h"
 
 class SampleLayer : public Croc::Layer
 {
@@ -15,7 +18,7 @@ public:
 	{
 		// Triangle Vertex Array Stuff
 
-		m_VertexArray.reset(Croc::VertexArray::Create());
+		m_VertexArray = Croc::VertexArray::Create();
 
 		float vertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.3f, 0.8f, 0.2f, 1.0f,
@@ -39,7 +42,7 @@ public:
 
 		// Square Vertex Array Stuff
 
-		m_SquareVA.reset(Croc::VertexArray::Create());
+		m_SquareVA = Croc::VertexArray::Create();
 
 		float squareVertices[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -188,9 +191,7 @@ public:
 	virtual void OnImGuiRender() override
 	{
 		ImGui::Begin("Settings");
-		
 		ImGui::ColorEdit3("Square Color", glm::value_ptr(m_SquareColor));
-
 		ImGui::End();
 	}
 
@@ -227,7 +228,8 @@ class Sandbox : public Croc::Application
 public:
 	Sandbox() 
 	{		
-		PushLayer(new SampleLayer());
+		//PushLayer(new SampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() 

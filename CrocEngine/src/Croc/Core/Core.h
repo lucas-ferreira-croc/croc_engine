@@ -2,19 +2,51 @@
 
 #include <memory>
 
-#ifdef CROC_PLATAFORM_WINDOWS
-#if CR_DYNAMIC_LINK
-	#ifdef CR_BUILD_DLL
-		#define CROC_API __declspec(dllexport)	
+#ifdef _WIN32
+	#ifdef _WIN64
+		#define CROC_PLATAFORM_WINDOWS
 	#else
-		#define CROC_API __declspec(dllimport)	
+		#error "x86 Builds are not supported!"
 	#endif
+#elif defined(__APPLE__) || defined(__MACH__)
+	#include <TargetConditionals.h>
+
+	#if TARGET_IPHONE_SIMULATOR == 1
+		#error "IOS simulator is not supported!"
+	#elif TARGET_OS_IPHONE == 1
+		#define CROC_PLATAFORM_IOS
+		#error "IOS is not supported!"
+	#elif TARGET_OS_MAC == 1
+		#define CROC_PLATAFORM_MACOS
+		#error "MacOS is not supported!"
 #else
-	#define CROC_API
+	#error "Unkown Apple plataform!"
+#endif
+
+#elif defined(__ANDROID__)
+	#define CROC_PLATFORM_ANDROID
+	#error "Android is not supported!"
+
+#elif defined(__linux__)
+	#define CROC_PLATFORM_LINUX
+	#error "Linux is not supported!"
+#else
+	#error "Unknown platform!"
+#endif 
+
+#ifdef CROC_PLATAFORM_WINDOWS
+	#if CROC_DYNAMIC_LINK
+		#ifdef CROC_BUILD_DLL
+			#define CROC_API __declspec(dllexport)
+		#else
+			#define CROC_API __declspec(dllimport)
+		#endif
+	#else
+		#define CROC_API
 #endif
 #else
 	#error Croc only supports Windows!
-#endif
+#endif 
 
 #ifdef CR_DEBUG
 	#define CROC_ENABLE_ASSERTS
