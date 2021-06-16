@@ -11,7 +11,7 @@ class SampleLayer : public Croc::Layer
 {
 public:
 	SampleLayer() :
-		Layer("Sample"), m_CameraController(1280.0f /720.0f)
+		Layer("Sample"), m_CameraController(1280.0f / 720.0f)
 	{
 		// Triangle Vertex Array Stuff
 
@@ -197,6 +197,7 @@ public:
 	void OnEvent(Croc::Event& e) override
 	{
 		m_CameraController.OnEvent(e);
+
 	}
 
 	bool OnKeyPressedEvent(Croc::KeyPressedEvent& event)

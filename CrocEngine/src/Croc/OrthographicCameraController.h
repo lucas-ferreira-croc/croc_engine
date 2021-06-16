@@ -19,12 +19,14 @@ namespace Croc{
 		OrthographicCamera& GetCamera() { return m_Camera; }
 		const OrthographicCamera& GetCamera() const { return m_Camera; }
 
-		float GetCameraTranslationSpeed() { return m_CameraTranslationSpeed; }
-		float GetCameraRotationSpeed() { return m_CameraRotationSpeed; }
+		float GetCameraTranslationSpeed() const { return m_CameraTranslationSpeed; }
+		float GetCameraRotationSpeed() const { return m_CameraRotationSpeed; }
 
 		void SetCameraTranslationSpeed(float speed) { m_CameraTranslationSpeed = speed; }
 		void SetCameraRotationSpeed(float speed) { m_CameraRotationSpeed = speed; }
 
+		void SetZoomLevel(float level) { m_ZoomLevel = level; }
+		float GetZoomLevel() const { return m_ZoomLevel; }
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
