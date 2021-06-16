@@ -1,7 +1,7 @@
 #include "crocpch.h"
 #include "WindowsInput.h"
 
-#include "Croc/Application.h"
+#include "Croc/Core/Application.h"
 
 #include <GLFW/glfw3.h>
 

@@ -2,16 +2,16 @@
 
 //For use by Croc applications
 
-#include "Croc/Application.h"
-#include "Croc/Layer.h"
-#include "Croc/Log.h"
+#include "Croc/Core/Application.h"
+#include "Croc/Core/Layer.h"
+#include "Croc/Core/Log.h"
 
 #include "Croc/Core/Timestep.h"
 
-#include "Croc/Input.h"
-#include "Croc/MouseButtonCodes.h"
-#include "Croc/KeyCodes.h"
-#include "Croc/OrthographicCameraController.h"
+#include "Croc/Core/Input.h"
+#include "Croc/Core/MouseButtonCodes.h"
+#include "Croc/Core/KeyCodes.h"
+#include "Croc/Renderer/OrthographicCameraController.h"
 
 #include "Croc/ImGui/ImGuiLayer.h"
 
@@ -29,5 +29,5 @@
 
 
 // ----- Entry Point -----
-#include "Croc/Entrypoint.h"
+#include "Croc/Core/Entrypoint.h"
 // -----------------------

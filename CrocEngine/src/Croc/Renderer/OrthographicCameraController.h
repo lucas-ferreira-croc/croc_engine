@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Renderer/OrthographicCamera.h"
-#include "Core/Timestep.h"
+#include "Croc/Renderer/OrthographicCamera.h"
+#include "Croc/Core/Timestep.h"
 
-#include "Events/ApplicationEvent.h"
-#include "Events/MouseEvent.h"
+#include "Croc/Events/ApplicationEvent.h"
+#include "Croc/Events/MouseEvent.h"
 
 namespace Croc{
 

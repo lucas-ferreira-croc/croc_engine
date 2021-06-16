@@ -2,8 +2,8 @@
 #include "OrthographicCameraController.h"
 
 
-#include "Input.h"
-#include "KeyCodes.h"
+#include "Croc/Core/Input.h"
+#include "Croc/Core/KeyCodes.h"
 
 namespace Croc {
 		

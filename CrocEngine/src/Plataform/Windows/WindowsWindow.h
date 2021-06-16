@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Croc/Window.h"
+#include "Croc/Core/Window.h"
 #include "Croc/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

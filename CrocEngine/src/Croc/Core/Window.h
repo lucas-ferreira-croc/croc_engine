@@ -2,7 +2,7 @@
 
 #include "crocpch.h"
 
-#include "Croc/Core.h"
+#include "Croc/Core/Core.h"
 #include "Croc/Events/Event.h"
 
 namespace Croc{

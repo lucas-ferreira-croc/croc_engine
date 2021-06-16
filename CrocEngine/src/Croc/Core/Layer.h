@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Croc/Core.h"
+#include "Croc/Core/Core.h"
 #include "Croc/Events/Event.h"
 #include "Croc/Core/Timestep.h"
 

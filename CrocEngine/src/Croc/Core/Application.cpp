@@ -1,7 +1,7 @@
 #include "crocpch.h"
 #include "Application.h"
 
-#include "Croc/Log.h"
+#include "Croc/Core/Log.h"
 
 #include "Croc/Renderer/Renderer.h"
 

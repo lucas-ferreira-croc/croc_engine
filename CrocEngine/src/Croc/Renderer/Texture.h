@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "Croc/Core.h"
+#include "Croc/Core/Core.h"
 
 namespace Croc {
 

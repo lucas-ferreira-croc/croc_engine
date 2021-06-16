@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Croc/Input.h"
+#include "Croc/Core/Input.h"
 
 namespace Croc {
 	

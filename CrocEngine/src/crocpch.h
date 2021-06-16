@@ -13,7 +13,7 @@
 #include <unordered_map>
 #include <unordered_set>
 
-#include "Croc/Log.h"
+#include "Croc/Core/Log.h"
 
 #ifdef CROC_PLATAFORM_WINDOWS
 	#include <Windows.h>
