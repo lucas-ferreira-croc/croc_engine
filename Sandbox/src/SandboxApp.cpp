@@ -173,14 +173,14 @@ public:
 			{
 				glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 				glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-				Croc::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
+				//Croc::Renderer::Submit(m_FlatColorShader, m_SquareVA, transform);
 			}			
 		}
 		
 		auto textureShader = m_ShaderLibrary.Get("Texture");
 
 		m_Texture->Bind();
-		Croc::Renderer::Submit(m_Shader, m_VertexArray);
+		//Croc::Renderer::Submit(m_Shader, m_VertexArray);
 		Croc::Renderer::Submit(textureShader, m_SquareVA,  glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
 		// Triangle
@@ -220,7 +220,7 @@ private:
 
 	Croc::OrthographicCameraController m_CameraController;
 
-	glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
+	glm::vec3 m_SquareColor = { 1.0f, 1.0f, 1.0f };
 };
 
 class Sandbox : public Croc::Application

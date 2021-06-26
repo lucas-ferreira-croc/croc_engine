@@ -17,6 +17,7 @@
 
 // ----- Renderer -----
 #include "Croc/Renderer/Renderer.h"
+#include "Croc/Renderer/Renderer2D.h"
 #include "Croc/Renderer/RenderCommand.h"
 
 #include "Croc/Renderer/Buffer.h"

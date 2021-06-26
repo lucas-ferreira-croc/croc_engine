@@ -16,32 +16,7 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
-	// Square Vertex Array Stuff
-
-	m_SquareVA = Croc::VertexArray::Create();
-
-	float squareVertices[5 * 4] = {
-		-0.5f, -0.5f, 0.0f,
-		 0.5f, -0.5f, 0.0f,
-		 0.5f,  0.5f, 0.0f,
-		-0.5f,  0.5f, 0.0f
-	};
-
-
-	Croc::Ref<Croc::VertexBuffer> squareVB;
-	squareVB.reset(Croc::VertexBuffer::Create(squareVertices, sizeof(squareVertices)));
-	squareVB->SetLayout({
-		{ Croc::ShaderDataType::Float3, "a_Position" },
-	});
-
-	m_SquareVA->AddVertexBuffer(squareVB);
-
-	uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
-	Croc::Ref<Croc::IndexBuffer> squareIB;
-	squareIB.reset(Croc::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
-	m_SquareVA->SetIndexBuffer(squareIB);
-
-	m_FlatColorShader = Croc::Shader::Create("assets/shaders/FlatColorShader.glsl");
+	
 }
 
 void Sandbox2D::OnDetach()
@@ -58,14 +33,14 @@ void Sandbox2D::OnUpdate(Croc::Timestep timestep)
 	Croc::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 	Croc::RenderCommand::Clear();
 
-	Croc::Renderer::BeginScene(m_CameraController.GetCamera());
+	Croc::Renderer2D::BeginScene(m_CameraController.GetCamera());
+	Croc::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0, 1.0f }, { 77.0f / 255.0f , 28.0f / 255.0f, 184.0f / 255.0f  , 1.0f });
+	Croc::Renderer2D::EndScene();
+	
+	//std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->Bind();
+	//std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
+	//Croc::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-	std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->Bind();
-	std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->UploadUniformFloat4("u_Color", m_SquareColor);
-
-	Croc::Renderer::Submit(m_FlatColorShader, m_SquareVA, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-
-	Croc::Renderer::EndScene();
 }
 
 void Sandbox2D::OnImGuiRender()
