@@ -34,7 +34,8 @@ void Sandbox2D::OnUpdate(Croc::Timestep timestep)
 	Croc::RenderCommand::Clear();
 
 	Croc::Renderer2D::BeginScene(m_CameraController.GetCamera());
-	Croc::Renderer2D::DrawQuad({ 0.0f, 0.0f }, { 1.0, 1.0f }, { 77.0f / 255.0f , 28.0f / 255.0f, 184.0f / 255.0f  , 1.0f });
+	Croc::Renderer2D::DrawQuad({ -1.0f,  0.0f }, { 0.8f, 0.8f }, { 77.0f / 255.0f , 28.0f / 255.0f, 184.0f / 255.0f  , 1.0f });
+	Croc::Renderer2D::DrawQuad({  0.5f, -0.5f }, { 0.5,  0.70f },  { 0.3f, 0.3f, 1.0f, 1.0f });
 	Croc::Renderer2D::EndScene();
 	
 	//std::dynamic_pointer_cast<Croc::OpenGLShader>(m_FlatColorShader)->Bind();
