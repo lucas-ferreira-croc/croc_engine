@@ -23,6 +23,7 @@ private:
 
 	Croc::Ref<Croc::VertexArray> m_SquareVA;
 	Croc::Ref<Croc::Shader> m_FlatColorShader;
+	Croc::Ref<Croc::Texture2D> m_Texture;
 
 	glm::vec4 m_SquareColor = { 0.2f, 0.3f, 0.8f , 1.0f};
 };
