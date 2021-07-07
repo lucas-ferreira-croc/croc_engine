@@ -17,7 +17,6 @@ namespace Croc {
 
 		void OnAttach() override;
 		void OnDetach() override;
-		virtual void OnImGuiRender() override;
 
 		void Begin();
 		void End();
