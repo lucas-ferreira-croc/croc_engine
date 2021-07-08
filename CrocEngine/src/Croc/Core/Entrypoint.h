@@ -8,13 +8,18 @@ int main(int argc, char** argv)
 {
 
 	Croc::Log::Init();
-	CROC_CORE_WARN("Core Log System Inicialized!");
-	CROC_INFO("Client Log System Initialized!");
 
+	CROC_PROFILE_BEGIN_SESSION("Startupt", "CrocProfile-Startup.json");
 	auto app = Croc::CreateApplication();
-	app->Run();
-	delete app;
+	CROC_PROFILE_END_SESSION();
 
+	CROC_PROFILE_BEGIN_SESSION("Runtime", "CrocProfile-Runtime.json");
+	app->Run();
+	CROC_PROFILE_END_SESSION();
+
+	CROC_PROFILE_BEGIN_SESSION("ShutDown", "CrocProfile-ShutDown.json");
+	delete app;
+	CROC_PROFILE_END_SESSION();
 }
 	
 #endif

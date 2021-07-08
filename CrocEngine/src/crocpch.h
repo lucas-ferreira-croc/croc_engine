@@ -14,6 +14,7 @@
 #include <unordered_set>
 
 #include "Croc/Core/Log.h"
+#include "Croc/Debug/Instrumentor.h"
 
 #ifdef CROC_PLATAFORM_WINDOWS
 	#include <Windows.h>

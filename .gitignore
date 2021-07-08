@@ -13,3 +13,4 @@ CrocEngine/vendor/stb_image
 **.vcxproj.filters
 **.vcxproj.user
 **.sln
+**.json
