@@ -123,8 +123,8 @@ namespace Croc{
 	};
 }
 
-#define CROC_PROFILE 1
-#if CROC_PROFILE
+//#define CROC_PROFILE 1
+#ifdef CROC_PROFILE
 	#define CROC_PROFILE_BEGIN_SESSION(name, filepath) ::Croc::Instrumentor::Get().BeginSession(name, filepath)
 	#define CROC_PROFILE_END_SESSION() ::Croc::Instrumentor::Get().EndSession()
 	#define CROC_PROFILE_SCOPE(name) ::Croc::InstrumentationTimer timer##__LINE__(name);
