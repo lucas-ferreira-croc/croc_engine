@@ -17,6 +17,8 @@ namespace Croc
 	
 	Application::Application()
 	{
+		CROC_PROFILE_FUNCTION();
+
 		CROC_CORE_ASSERT(!s_Instance, "Application already exists!");
 		s_Instance = this;
 
@@ -32,22 +34,27 @@ namespace Croc
 
 	Application::~Application()
 	{
+		CROC_PROFILE_FUNCTION();
+		
 	}
 
 	void Application::PushLayer(Layer* layer)
 	{
+		CROC_PROFILE_FUNCTION();
 		m_LayerStack.PushLayer(layer);
 		layer->OnAttach();
 	}
 
 	void Application::PushOverlay(Layer* layer)
 	{
+		CROC_PROFILE_FUNCTION();
 		m_LayerStack.PushOverlay(layer);
 		layer->OnAttach();
 	}
 
 	void Application::OnEvent(Event& e)
 	{
+		CROC_PROFILE_FUNCTION();
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(BIND_EVENT_FN(OnWindowResize));
@@ -62,23 +69,29 @@ namespace Croc
 
 	void Application::Run() 
 	{
-	
+		CROC_PROFILE_FUNCTION();
 		while (m_Running) 
 		{
+			CROC_PROFILE_SCOPE("Run Loop");
 
 			float time = (float)glfwGetTime(); // Plataform::GetTime()
 			Timestep timestep = time - m_LastFrameTime;
 			m_LastFrameTime = time;
 			
 			if( !m_Minemized )
-			{
-				for (Layer* layer : m_LayerStack)
-					layer->OnUpdate(timestep);
+			{ 
+				{	CROC_PROFILE_SCOPE("Layer OnUpdate");
+					for (Layer* layer : m_LayerStack)
+						layer->OnUpdate(timestep);
+				}
 			}
 
 			m_ImGuiLayer->Begin();
-			for (Layer* layer : m_LayerStack)
-				layer->OnImGuiRender();
+			{
+				CROC_PROFILE_SCOPE("Layer OnImGuiRender");
+				for (Layer* layer : m_LayerStack)
+					layer->OnImGuiRender();
+			}
 			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
@@ -93,6 +106,7 @@ namespace Croc
 	
 	bool Application::OnWindowResize(WindowResizeEvent& e)
 	{
+		CROC_PROFILE_FUNCTION();
 
 		if(e.GetWidth() == 0 || e.GetHeight() == 0  )
 		{

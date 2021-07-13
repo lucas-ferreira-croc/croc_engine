@@ -7,6 +7,7 @@
 namespace Croc {
 	Ref<VertexArray> VertexArray::Create()
 	{
+
 		switch (Renderer::GetAPI())
 		{
 			case RendererAPI::API::None:   CROC_CORE_ASSERT(false, "RendererAPI::None is currentyly not supported!"); return nullptr;

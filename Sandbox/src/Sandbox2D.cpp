@@ -15,11 +15,14 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::OnAttach()
 {
+	CROC_PROFILE_FUNCTION();
+
 	m_Texture = Croc::Texture2D::Create("assets/textures/croc_engine_logo.png");
 }
 
 void Sandbox2D::OnDetach()
 {
+	CROC_PROFILE_FUNCTION();
 
 }
 
@@ -27,11 +30,8 @@ void Sandbox2D::OnUpdate(Croc::Timestep timestep)
 {
 	CROC_PROFILE_FUNCTION();
 	
-	// Update
-	{	
-		CROC_PROFILE_SCOPE("cameraController::OnUpdate");
-		m_CameraController.OnUpdate(timestep);
-	}
+	m_CameraController.OnUpdate(timestep);
+	
 
 	// Renderer
 	{

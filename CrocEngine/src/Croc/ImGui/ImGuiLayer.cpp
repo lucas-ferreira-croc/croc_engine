@@ -24,6 +24,7 @@ namespace Croc {
 
 	void ImGuiLayer::OnAttach()
 	{
+		CROC_PROFILE_FUNCTION();
 		// Setup Dear ImGui context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -57,6 +58,7 @@ namespace Croc {
 
 	void ImGuiLayer::OnDetach()
 	{
+		CROC_PROFILE_FUNCTION();
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -64,6 +66,7 @@ namespace Croc {
 
 	void ImGuiLayer::Begin() 
 	{
+		CROC_PROFILE_FUNCTION();
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -71,6 +74,7 @@ namespace Croc {
 
 	void ImGuiLayer::End()
 	{
+		CROC_PROFILE_FUNCTION();
 
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();

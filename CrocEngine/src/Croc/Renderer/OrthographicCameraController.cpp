@@ -16,7 +16,8 @@ namespace Croc {
 
 	void OrthographicCameraController::OnUpdate(Timestep ts)
 	{
-	
+		CROC_PROFILE_FUNCTION();
+
 		float time = ts;
 
 		if (Input::IsKeyPressed(CROC_KEY_A))
@@ -46,6 +47,8 @@ namespace Croc {
 	
 	void OrthographicCameraController::OnEvent(Event& e)
 	{
+		CROC_PROFILE_FUNCTION();
+
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<MouseScrolledEvent>(CROC_BIND_EVENT_FN(OrthographicCameraController::OnMouseScrolled));
 		dispatcher.Dispatch<WindowResizeEvent>(CROC_BIND_EVENT_FN(OrthographicCameraController::OnWindowResize));
@@ -54,6 +57,8 @@ namespace Croc {
 	
 	bool OrthographicCameraController::OnMouseScrolled(MouseScrolledEvent& e)
 	{
+		CROC_PROFILE_FUNCTION();
+
 		m_ZoomLevel -= e.GetYOffset() * 0.25f;
 		m_ZoomLevel = std::max(m_ZoomLevel, 0.25f);
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
@@ -63,6 +68,8 @@ namespace Croc {
 	
 	bool OrthographicCameraController::OnWindowResize(WindowResizeEvent& e)
 	{
+		CROC_PROFILE_FUNCTION();
+
 		m_AspectRatio = (float) e.GetWidth() / (float) e.GetHeight();
 		m_Camera.SetProjection(-m_AspectRatio * m_ZoomLevel, m_AspectRatio * m_ZoomLevel, -m_ZoomLevel, m_ZoomLevel);
 

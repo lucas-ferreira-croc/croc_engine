@@ -10,6 +10,8 @@ namespace Croc {
 
 	void Renderer::Init()
 	{
+		CROC_PROFILE_FUNCTION();
+
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
